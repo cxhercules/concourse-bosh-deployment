@@ -46,17 +46,6 @@
     name: uaa_encryption_key
     type: password
 
-# update DB instance to include uaa databases
-- type: replace
-  path: /instance_groups/name=db/jobs/name=postgres/properties/databases/databases/-
-  value:
-    name: *uaa_db
-- type: replace
-  path: /instance_groups/name=db/jobs/name=postgres/properties/databases/roles/-
-  value: 
-    name: *uaa_db
-    password: *uaa_db_passwd
-
 # add UAA job to web instance group
 - type: replace
   path: /instance_groups/name=web/jobs/-
@@ -128,3 +117,14 @@
           serviceProviderCertificate: ((atc_tls.certificate))
           serviceProviderKey: ((atc_tls.private_key))
           serviceProviderKeyPassword: ""
+
+# update DB instance to include uaa databases
+- type: replace
+  path: /instance_groups/name=db/jobs/name=postgres/properties/databases/databases/-
+  value:
+    name: *uaa_db
+- type: replace
+  path: /instance_groups/name=db/jobs/name=postgres/properties/databases/roles/-
+  value: 
+    name: *uaa_db
+    password: *uaa_db_passwd
