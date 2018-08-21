@@ -57,6 +57,30 @@ bosh -e $BOSH_ENVIRONMENT deploy -d concourse-worker external-worker.yml \
   -l <path/to/secrets.yml>
 ```
 
+## Credhub integration 
+```shell
+$ cd cluster
+$ bosh -e lite deploy --no-redact -d concourse2 concourse.yml \
+  -l ../versions.yml \
+  --vars-store cluster-creds.yml \
+  -o operations/static-web.yml \
+  -o operations/no-auth.yml \
+  -o operations/tls-vars.yml \
+  -o operations/tls.yml \
+  -o operations/postgres-link.yml \
+  -o operations/credhub-colocated.yml \
+  -o operations/uaa.yml \
+  --var concourse_domain_name=10.255.0.104 \
+  --var web_ip=10.244.0.104 \
+  --var external_url=https://10.244.0.104:4443 \
+  --var network_name=default \
+  --var web_vm_type=small \
+  --var db_vm_type=small \
+  --var db_persistent_disk_type=10GB \
+  --var worker_vm_type=small \
+  --var deployment_name=concourse2
+```
+
 The `secrets.yml` file has to contain the public tsa host key of the concourse master and the worker private
 key:
 

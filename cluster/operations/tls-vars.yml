@@ -14,3 +14,5 @@
     type: certificate
     options:
       ca: atc_ca
+      common_name: ((concourse_domain_name))
+      alternative_names: ((web_ip))
