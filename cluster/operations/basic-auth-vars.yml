@@ -1,6 +1,6 @@
 # Variables
 - type: replace
-  path: /variables?/name=atc_basic_auth?
+  path: /variables?/name=atc_basic_auth.password?
   value:
-    name: atc_basic_auth
+    name: atc_basic_auth.password
     type: password
