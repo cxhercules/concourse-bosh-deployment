@@ -1,6 +1,11 @@
+# Update variables
+- type: replace
+  path: /instance_groups/name=web/jobs/name=atc/properties/basic_auth_password?
+  value: ((atc_basic_password))
+
 # Variables
 - type: replace
-  path: /variables?/name=atc_basic_auth.password?
+  path: /variables?/name=atc_basic_password?
   value:
-    name: atc_basic_auth.password
+    name: atc_basic_password
     type: password
